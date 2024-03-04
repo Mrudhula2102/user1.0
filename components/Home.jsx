@@ -3,9 +3,9 @@ import
 { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}
  from 'react-icons/bs'
  import 
- { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
+ { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
  from 'recharts';
-function Homee() {
+function Home() {
 
     const data = [
         {
@@ -140,4 +140,4 @@ function Homee() {
   )
 }
 
-export default Homee
+export default Home

@@ -1,15 +1,15 @@
+//Myprofile.jsx
 import React, { useState } from 'react'
-import Topbar from '../Topbar/Topbar'
-
+import Sidebar from '../Sidebar/Sidebar'
 import './Myprofile.css'
 import { Button} from '@mui/material'
 
 const Myprofile = (props) => {
   const [editing, setEditing] = useState(false);
   const [userData, setUserData] = useState({
-    hrId: 'EMP1234',
-    fullName: 'John Doe',
-    email: 'john@example.com',
+    hrId: 'Admn',
+    fullName: 'TalentHRM',
+    email: 'talenthrm2003@google.com',
     phone: '123-456-7890',
     address: '123 Main St, City, Country',
   });
@@ -26,6 +26,7 @@ const Myprofile = (props) => {
   const handleSave = () => {
     // Here, you can perform actions like sending the user data to a server
     // For now, let's log the user object to the console
+
     console.log(userData);
     setEditing(false);
   };
@@ -39,12 +40,12 @@ const Myprofile = (props) => {
 
   
   return (
-    <div>
-      <div>
-       <Topbar xxx={props.checkLogout}/></div>
-       <div className='bbb'>
-      <div className="profile-container">
-      <h1>User Profile</h1>
+<div className='grid-container'>
+    
+    <Sidebar/>  
+   
+      <div className="profile-box">
+      <h1 >User Profile</h1>
       <div className="profile-details">
         <div>
           <label>HR ID:</label>
@@ -103,16 +104,17 @@ const Myprofile = (props) => {
           )}
         </div>
       </div>
+      
       <div className="button-container">
         {editing ? (
           <>
-            <Button onClick={handleSave}>Save</Button>
-            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={handleSave} variant='contained'>Save</Button>
+            <Button onClick={handleCancel} variant='contained'>Cancel</Button>
           </>
         ) : (
-          <Button onClick={handleEditToggle}>Edit</Button>
+          
+          <Button onClick={handleEditToggle} variant='contained'>Edit</Button>
         )}
-      </div>
       </div>
     </div>
     </div>

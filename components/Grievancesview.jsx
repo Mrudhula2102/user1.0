@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import Topbar from '../Topbar/Topbar';
+import Sidebar from '../Sidebar/Sidebar';
 
 const Grievancesview = (props) => {
     var[grievance,setgrievance] = useState([]);
@@ -17,10 +17,12 @@ const Grievancesview = (props) => {
         .catch(err=>console.log(err))
     },[])
 var result=
-<div>
-<div><Topbar xxx={props.checkLogout}/></div>
-<div className='bbb'>
-<h1>Grievances</h1><br/><br/>
+<div className='grid-container'>
+    
+    <Sidebar/> 
+    <div align='center'>
+<div className='emp'>
+    <h2><b className='head'>GRIEVANCES</b></h2><br/><br/>
 <TableContainer component={Paper}>
 <Table >
   <TableBody>
@@ -35,6 +37,7 @@ var result=
   </TableBody>
 </Table>
 </TableContainer>
+</div>
 </div>
 </div>
   return (result)

@@ -1,15 +1,15 @@
 import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Topbar from '../Topbar/Topbar';
-
+import Sidebar from '../Sidebar/Sidebar';
 
 const Trainingedit = (props) => {
    
         var[training,settraining]=useState(props.data)
     
-    // const navigate =useNavigate();
+    const navigate =useNavigate();
     
     
     const traininghandler =(event)=>{
@@ -32,11 +32,11 @@ const Trainingedit = (props) => {
      }
      
   return (
-    <div>
-    <div className='div' align="center">
-    <div>
-    <Topbar xxx={props.checkLogout}/>
-   </div>
+<div className='grid-container'>
+    
+    <Sidebar/>  
+       <div className='profile-box' align="center">
+    
       <h1>Employee Training Status</h1>
       <TextField  label="ID" variant="filled" name="id" value={training.idd} onChange={traininghandler}/><br/><br/>
       <TextField  label="name" variant="filled" name="ename" value={training.ename}  onChange={traininghandler}/><br/><br/>

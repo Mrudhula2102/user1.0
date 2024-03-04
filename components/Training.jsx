@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-
-import Topbar from '../Topbar/Topbar'
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Myprofile.css'
+import './Training.css'
+import Sidebar from '../Sidebar/Sidebar';
 
 
 
@@ -25,18 +24,21 @@ const Training = (props) => {
     axios.post("http://localhost:4005/new/",training)
     .then((response) =>{
     alert("Record Saved")
-    navigate('/TrainingView')
+    navigate('/Viewtraining')
     })
     .catch(err=>console.log(err))
     }
   return (
+    <div className='grid-container'>
+    
+         <Sidebar/>  
+        
     <div align="center">
-      <div>
-    <Topbar xxx={props.checkLogout}/>
- </div>
-       <div className='bbb'>
-      <div className='div'>
-      <h1>Employee Training Status</h1>
+      
+      
+      
+    <div className="profile-box">
+      <h1>Training</h1>
       <TextField  label="ID" variant="filled" name="idd" value={training.idd} onChange={inputhandler}/><br/><br/>
       <TextField  label="name" variant="filled" name="ename" value={training.name}  onChange={inputhandler}/><br/><br/>
       <TextField  label="Age" variant="filled" name="age" value={training.age}  onChange={inputhandler} /><br/><br/>
@@ -47,6 +49,7 @@ const Training = (props) => {
     </div>
     </div>
     </div>
+    
   )
 }
 

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import EmployeeEdit from './EmployeeEdit';
-import Topbar from '../Topbar/Topbar';
-
+import Sidebar from '../Sidebar/Sidebar';
+import { Button } from 'antd';
 const Employeeview = (props) => {
     var[employee,setEmployee] = useState([]);
     var[selected,setSelected] = useState();
@@ -22,16 +23,29 @@ const Employeeview = (props) => {
         .catch(err=>console.log(err))
     },[])
 
+const deletevalues =(id)=>{
+    console.log("deleted",id)
+    axios.put("http://localhost:4005/remove2/"+id)
+    .then((response)=>{
+        alert("DELETED")
+    window.location.reload(false);
+    })
+}
+
 const updatevalues =(value)=>{
 console.log("updated",value);
 setSelected(value);
 setUpdate(true);
 }
 var result=
-<div>
-<div><Topbar xxx={props.checkLogout}/></div>
-<div className='bbb'>
-<h1>Employee Details</h1><br/><br/>
+<div className='grid-container'>
+    
+    <Sidebar/>  
+   
+<div align='center'>
+<div className='emp'>
+
+<Typography ><b className='head'>EMPLOYEE VIEW</b></Typography><br/><br/>
 <TableContainer component={Paper}>
 <Table >
   <TableHead>
@@ -41,7 +55,6 @@ var result=
       <TableCell >Age</TableCell>
       <TableCell >Status</TableCell>
       <TableCell>Edit</TableCell>
-      {/* <TableCell>Delete</TableCell> */}
     </TableRow>
   </TableHead>
   <TableBody>
@@ -52,14 +65,14 @@ var result=
                   <TableCell>{value.ename}</TableCell>
                   <TableCell>{value.eage}</TableCell>
                   <TableCell>{value.status}</TableCell>
-                  <TableCell><ModeEditOutlineIcon color='success' onClick={()=>updatevalues(value)}/></TableCell>
-                  {/* <TableCell><DeleteForeverIcon color='error' onClick={()=>deletevalues(value._id)}/></TableCell> */}
+                  <TableCell><ModeEditOutlineIcon color='success'  onClick={()=>updatevalues(value)}/></TableCell>
               </TableRow>
           )
       })}
   </TableBody>
 </Table>
 </TableContainer>
+</div>
 </div>
 </div>
 if(update)

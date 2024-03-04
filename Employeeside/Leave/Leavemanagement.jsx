@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import Topbare from '../Topbare';
+import UserSidebar from '../../components/UserSidebar';
 
 const localizer = momentLocalizer(moment);
 
@@ -15,7 +15,7 @@ const events = [
   // Add more events as needed
 ];
 
-const Leavemanagement = ( props) => {
+const Leavemanagement = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handleEventSelect = (event) => {
@@ -23,15 +23,20 @@ const Leavemanagement = ( props) => {
   };
 
   return (
-    <div>
-      <Topbare xxx={props.checkLogout}/>
-      <h1>Leave Management Calendar</h1>
+<div className='grid-container'>
+    
+    <UserSidebar/> 
+    <div align='center'>
+    <div className='profile-box'>
+
+    <h2 className='color'>LEAVE MANAGEMENT</h2>
+     <div className='calender-container'>
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 400 }}
+        style={{ height: 600 }}
         onSelectEvent={handleEventSelect}
       />
       {selectedEvent && (
@@ -41,6 +46,9 @@ const Leavemanagement = ( props) => {
           <p>End: {moment(selectedEvent.end).format('LLL')}</p>
         </div>
       )}
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { Button, FormControlLabel, FormGroup, Switch, TextField } from '@mui/mat
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Employeedetails.css'
+import Sidebar from '../Sidebar/Sidebar';
 
 
 
@@ -30,6 +31,10 @@ const Employeedetails = (props) => {
     .catch(err=>console.log(err))
     }
   return (
+    <div className='grid-container'>
+    
+         <Sidebar/>  
+        
     <div align="center">
       
     <div className="profile-box">
@@ -39,6 +44,7 @@ const Employeedetails = (props) => {
       <TextField  label="ID" variant="filled" name="idd" value={employees.idd} onChange={inputhandler}/><br/><br/>
       <TextField  label="name" variant="filled" name="ename" value={employees.ename}  onChange={inputhandler}/><br/><br/>
       <TextField  label="Age" variant="filled" name="eage" value={employees.eage}  onChange={inputhandler} /><br/><br/>
+      <TextField  label="Address" variant="filled" name="eadress" value={employees.eadress}  onChange={inputhandler} /><br/><br/>
       Status: &nbsp;&nbsp;
       <select name="status" value={employees.status}  onChange={inputhandler}>
        <option value="ACTIVE">ACTIVE</option>
@@ -47,9 +53,10 @@ const Employeedetails = (props) => {
       
       
       <br/><br/>
-      <br/>
+      
       <Button variant="contained" onClick={savedata} >SUBMIT</Button>
       </div>
+    </div>
     </div>
     
   )

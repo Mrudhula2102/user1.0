@@ -1,3 +1,4 @@
+/*topbar.css*/
 nav {
     display: flex;
     align-items: center;
@@ -5,7 +6,6 @@ nav {
     background: #1b2430;
     padding: 20px 80px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-    z-index: 9999;
   }
   #navbar{
     display: flex;

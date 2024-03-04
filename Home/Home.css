@@ -120,9 +120,3 @@ body {
   height: auto;
   border-radius: 5px;
 }
- /* Responsive design */
- @media (max-width: 768px) {
-  form {
-    padding: 1rem;
-  }
-}

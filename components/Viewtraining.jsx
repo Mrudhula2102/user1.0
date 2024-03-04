@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Trainingedit from './Trainingedit';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import Topbar from '../Topbar/Topbar';
+import Sidebar from '../Sidebar/Sidebar';
 const Viewtraining = (props) => {
     var[training,settraining] = useState([]);
     var[selected,setSelected] = useState();
@@ -21,14 +22,14 @@ const Viewtraining = (props) => {
         .catch(err=>console.log(err))
     },[])
 
-// const deletevalues =(id)=>{
-//     console.log("deleted",id)
-//     axios.put("http://localhost:4005/remove"+id)
-//     .then((response)=>{
-//         alert("DELETED")
-//     window.location.reload(false);
-//     })
-// }
+const deletevalues =(id)=>{
+    console.log("deleted",id)
+    axios.put("http://localhost:4005/remove"+id)
+    .then((response)=>{
+        alert("DELETED")
+    window.location.reload(false);
+    })
+}
 
 const updatevalues =(value)=>{
 console.log("updated",value);
@@ -36,10 +37,14 @@ setSelected(value);
 setUpdate(true);
 }
 var result=
-<div>
-<div><Topbar xxx={props.checkLogout}/></div>
-<div className='bbb'>
-<Typography >Training Details</Typography><br/><br/>
+<div className='grid-container'>
+    
+    <Sidebar/>  
+   
+<div className='training'>
+<div className='bb'>
+
+<Typography ><b className='head'>TRAINING STATUS</b></Typography><br/><br/>
 <TableContainer component={Paper}>
 <Table >
   <TableHead>
@@ -50,7 +55,6 @@ var result=
       <TableCell >Completed</TableCell>
       <TableCell >remarks</TableCell>
       <TableCell>Edit</TableCell>
-      {/* <TableCell>Delete</TableCell> */}
     </TableRow>
   </TableHead>
   <TableBody>
@@ -63,13 +67,13 @@ var result=
                   <TableCell>{value.completed}</TableCell>
                   <TableCell>{value.remarks}</TableCell>
                   <TableCell><ModeEditOutlineIcon color='success' onClick={()=>updatevalues(value)}/></TableCell>
-                  {/* <TableCell><DeleteForeverIcon color='error' onClick={()=>deletevalues(value._id)}/></TableCell> */}
               </TableRow>
           )
       })}
   </TableBody>
 </Table>
 </TableContainer>
+</div>
 </div>
 </div>
 if(update)

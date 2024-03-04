@@ -1,8 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react'
-import Topbar from '../Topbar/Topbar';
-
+import Sidebar from '../Sidebar/Sidebar';
 
 const EmployeeEdit = (props) => {
    
@@ -31,10 +30,12 @@ const EmployeeEdit = (props) => {
      }
      
   return (
-    <div className='div' align="center">
-    <div>
-    <Topbar xxx={props.checkLogout}/>
-    </div>
+    <div className='grid-container'>
+    
+         <Sidebar/>  
+        
+    <div className='profile-box' align="center">
+    
       <h1>Employee  Status</h1>
       <TextField  label="ID" variant="filled" name="idd" value={employee.idd} onChange={employeehandler}/><br/><br/>
       <TextField  label="name" variant="filled" name="ename" value={employee.ename}  onChange={employeehandler}/><br/><br/>
@@ -46,6 +47,7 @@ const EmployeeEdit = (props) => {
       </select>
       <br/><br/>
       <Button variant="contained" onClick={saveData}>SUBMIT</Button>
+    </div>
     </div>
 
 

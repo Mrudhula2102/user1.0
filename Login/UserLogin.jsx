@@ -1,40 +1,33 @@
 //Login.jsx
-import React, {  useState } from 'react'
-import './login.css';
+import React, { useState } from 'react'
+// import './login.css';
 import {  Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, TextField, ThemeProvider, createTheme } from '@mui/material';
-import AdminPanelSettingsSharpIcon from '@mui/icons-material/AdminPanelSettingsSharp';
- import "./NavBarStyles.css";
+import PersonPinIcon from '@mui/icons-material/PersonPin';//  import "./NavBarStyles.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-const Login = () => {
+const UserLogin = () => {
 
-    const [hrid,setHrId]=useState('')
+    const [empid,setempid]=useState('')
     const [password,setPassword]=useState('')
     const [error, setError] = useState('');
-
-  
-    
      const defaultTheme = createTheme();
      const navigate=useNavigate()
-
-
      const handleSubmit = async (e) => {
       e.preventDefault();
-  
       try {
-        const response = await axios.post('http://localhost:4005/logins', {
-          hrid: hrid,
-          password: password,
+        const response = await axios.post('http://localhost:4005/employeelogin', {
+          empid:empid,
+          password:password,
         });
   
         if (response.data.success) {
           alert('Login successful');
           console.log(response.data);
-          navigate('/userdashboard');
+          navigate('/eprofile');
         } else {
-          setError('Invalid HR ID or Password. Please try again.');
+          setError('Invalid EMP ID or Password. Please try again.');
           console.log(response.data);
 
         }
@@ -42,27 +35,17 @@ const Login = () => {
         setError('Error occurred during login. Please try again.');
       }
     };
-      
-
-
-
-    
   return (
 
 
     <div>
         <nav>
         
-            
-        
-        
-        <div>
     <ul id='navbar'>
         <li><a  href='/'>Home</a></li>
         <li><a className='active' href='/adlogin' >Login</a></li>
     </ul>
-    </div>
-    
+   
     </nav>
     <div  className='home'>
       <div className='cc'>
@@ -81,14 +64,15 @@ const Login = () => {
           }}
         />
         <form onSubmit={handleSubmit}>
-         <p className='bb'> <AdminPanelSettingsSharpIcon color='primary' fontSize='large'/></p>
+         <p className='bb'> <PersonPinIcon color='primary' fontSize='large'/></p>
           
           
-      <h1 align='center'>ADMIN LOGIN</h1>
-       <TextField  margin="normal" required fullWidth id="HR ID" label="HR ID" name="id" 
-                autoComplete="id"  autoFocus  value={hrid}
-                onChange={(e) => setHrId(e.target.value)} /><br/>
+      <h1 align='center'>EMPLOYEE LOGIN</h1>
+       <TextField  margin="normal" required fullWidth id="EMP ID" label="EMP ID" name="empid" 
+                autoComplete="id"  autoFocus  value={empid}
+                onChange={(e) => setempid(e.target.value)} /><br/>
 
+            
 
 
        
@@ -96,7 +80,7 @@ const Login = () => {
                 autoComplete="current-password"  value={password}
                 onChange={(e) => setPassword(e.target.value)}  /><br/>
 
-
+              
 
      
       <FormControlLabel
@@ -106,6 +90,7 @@ const Login = () => {
 
                 
       <Button type="submit" fullWidth variant="contained"  sx={{ mt: 3, mb: 2}} >LOG IN</Button> 
+      {/* <p className='r'>{error && '* ID and Password is required'}</p>  */}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       </form>
@@ -118,4 +103,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default UserLogin
